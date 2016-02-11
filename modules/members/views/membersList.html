@@ -1,0 +1,24 @@
+<h2>Members list</h2>
+
+<div>
+	<a href="#addMember">Add member</a>	
+</div><br>
+
+<div>
+	<table>
+		<tr>
+			<td style="width:30px"><b>id</b></td>
+			<td style="width:200px"><b>e-mail</b></td>
+			<td style="width:100px"><b>type</b></td>
+			<td style="width:50px"></td>
+			<td style="width:50px"></td>
+		</tr>
+		<tr ng-repeat="user in users | members">
+			<td>{{user.id}}</td>
+			<td>{{user.email}}</td>
+			<td>{{user.type}}</td>
+			<td><a href="#editMember/{{user.id}}">Edit</a></td>
+			<td><a href="#unregisterMember/{{user.id}}">Unregister</a></td>
+		</tr>
+	</table>
+</div>

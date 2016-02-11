@@ -8,7 +8,27 @@ angular.module('MainApp').config(['$routeProvider', function($routeProvider){
 			controller: 'dashboardCtrl'
 		}).
 		when('/members', {
-			templateUrl: 'modules/members/views/index.html',
+			templateUrl: 'modules/members/views/membersList.html',
+			module: 'MembersApp',
+			controller: 'membersCtrl'
+		}).
+		when('/addMember', {
+			templateUrl: 'modules/members/views/addMember.html',
+			module: 'MembersApp',
+			controller: 'membersCtrl'
+		}).
+		when('/editMember/:userID', {
+			templateUrl: 'modules/members/views/editMember.html',
+			module: 'MembersApp',
+			controller: 'membersCtrl'
+		}).
+		when('/unregisterMember/:userID', {
+			templateUrl: 'modules/members/views/unregisterMember.html',
+			module: 'MembersApp',
+			controller: 'membersCtrl'
+		}).
+		when('/exMembers', {
+			templateUrl: 'modules/members/views/exMembersList.html',
 			module: 'MembersApp',
 			controller: 'membersCtrl'
 		}).

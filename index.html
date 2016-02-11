@@ -33,6 +33,7 @@
 	<!-- add the different members admin modules -->
 	<script src="modules/dashboard/controllers.js"></script>
 	<script src="modules/members/Controllers.js"></script>
+	<script src="modules/members/filters.js"></script>
 </head>
 
 <body role="document" ng-app="MainApp">
@@ -51,17 +52,13 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#members">Members</a></li>
-                <!--
                 <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-expanded="false">Danslessen <span class="caret"></span></a>
+                       aria-expanded="false">Members <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="danslessen.html">Danslessen</a></li>
-                        <li><a href="stijldansen.html">Stijldansen</a></li>
-                        <li><a href="salsa.html">Salsa</a></li>
-                        <li><a href="rooster.html">Lesrooster</a></li>
+                        <li><a href="#members">Members list</a></li>
+                        <li><a href="#exMembers">Former members list</a></li>
                     </ul>
-                </li>-->
+                </li>
             </ul>
         </div>
     </div>
