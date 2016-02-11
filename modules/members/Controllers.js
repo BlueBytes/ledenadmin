@@ -53,7 +53,7 @@ angular.module('MembersApp',[]).controller('membersCtrl', ['$scope','$http','$lo
 	 */
 	$scope.editUser = function(user){
 		var updateURL = url + '/' + user.id;
-		var updatedUser = {email : user.email, type : user.type}
+		var updatedUser = {email : user.email, type : user.type};
 		
 		$http.put(updateURL, updatedUser).then(function succesCallback(response){
 			$scope.status = response.status;
@@ -73,7 +73,7 @@ angular.module('MembersApp',[]).controller('membersCtrl', ['$scope','$http','$lo
 		var updateURL = url + '/' + user.id;
 		user.type = "ex-member";
 		$scope.editUser(user);
-	}
+	};
 	
 	/**
 	 * Delete a user
@@ -83,7 +83,7 @@ angular.module('MembersApp',[]).controller('membersCtrl', ['$scope','$http','$lo
 		$http.delete(deleteURL, {id: user.id}).then(function succesCallback(response){
 			$scope.status = response.status;
 			$scope.statusText = response.statusText;
-			$scope.fetchUsers();
+			$location.path('/exMembers');
 		}, function errorCallBack(response){
 			$scope.status = response.status;
 			$scope.statusText = response.statusText;
@@ -93,7 +93,7 @@ angular.module('MembersApp',[]).controller('membersCtrl', ['$scope','$http','$lo
 	$scope.cancel = function()
 	{
 		$location.path('/members');
-	}
+	};
 	
 	$scope.userID = $routeParams.userID;
 	$scope.user = null; 

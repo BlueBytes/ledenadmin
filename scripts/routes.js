@@ -32,6 +32,11 @@ angular.module('MainApp').config(['$routeProvider', function($routeProvider){
 			module: 'MembersApp',
 			controller: 'membersCtrl'
 		}).
+		when('/deleteMember/:userID', {
+			templateUrl: 'modules/members/views/deleteMember.html',
+			module: 'MembersApp',
+			controller: 'membersCtrl'
+		}).
 		otherwise({
 			redirectTo: '/dashboard'
 		});
