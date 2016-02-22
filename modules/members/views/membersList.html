@@ -1,9 +1,10 @@
-<h2>Members list</h2>
+<h1>Members list</h1>
 
 <div>
-	<a href="#addMember">Add member</a>	
+	<a href="#newMember">Add member</a>	
 </div><br>
-
+<div>Select type: <select ng-model="types.selectedType" ng-options="type.type for type in types.availableTypes track by type.id" required></select></div>
+<br>
 <div>
 	<table>
 		<tr>
@@ -12,11 +13,13 @@
 			<td style="width:100px"><b>type</b></td>
 			<td style="width:50px"></td>
 			<td style="width:50px"></td>
+			<td style="width:50px"></td>
 		</tr>
-		<tr ng-repeat="user in users | members">
+		<tr ng-repeat="user in users | users:types.selectedType.type">
 			<td>{{user.id}}</td>
 			<td>{{user.email}}</td>
 			<td>{{user.type}}</td>
+			<td><a href="#viewMember/{{user.id}}">View</a></td>
 			<td><a href="#editMember/{{user.id}}">Edit</a></td>
 			<td><a href="#unregisterMember/{{user.id}}">Unregister</a></td>
 		</tr>

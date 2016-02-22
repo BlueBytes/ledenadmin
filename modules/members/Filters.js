@@ -57,3 +57,20 @@ angular.module('MembersApp').filter('others', function(){
 		return filtered;
 	};
 });
+
+angular.module('MembersApp').filter('users', function(){
+	return function(items, userType)
+	{
+		var filtered = [];
+		if(items != null){
+			for(var i = 0; i < items.length; i++){
+				var item = items[i];
+				if(item.type == userType){
+					filtered.push(item);
+				}
+			}
+		}
+		return filtered;
+	};
+});
+
