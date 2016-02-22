@@ -105,7 +105,7 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 			confirm: {view: false},
 			cancel: {view: true, value: "Back"},
 			title: "View member"
-		}
+		};
 	}
 	if($scope.state == 'new')
 	{
@@ -141,7 +141,7 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 			confirm: {view: true, value: "Add"},
 			cancel: {view: true, value: "Cancel"},
 			title:"New member"
-		}	
+		};	
 	}
 		if($scope.state == 'edit')
 	{
@@ -174,10 +174,10 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 			photo: {view: true, edit: true},
 			isanonumous: {view: true, edit: true},
 			remarks: {view: true, edit: true},
-			confirm: {view: true, value: ""},
+			confirm: {view: true, value: "Update"},
 			cancel: {view: true, value: "Back"},
 			title: "Edit member"
-		}
+		};
 	}
 	
 	if($scope.state == 'view' || $scope.state == 'edit')
