@@ -65,7 +65,7 @@ angular.module('MembersApp').filter('users', function(){
 		if(items != null){
 			for(var i = 0; i < items.length; i++){
 				var item = items[i];
-				if(item.type == userType){
+				if(item.Type == userType){
 					filtered.push(item);
 				}
 			}

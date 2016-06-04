@@ -16,11 +16,33 @@ membersApp.controller('membersListCtrl', ['$scope','usersService', function($sco
 	};
 	$scope.obj = null;
 	
+    /*
+    *   This function uses the fetchUsers service to retrieve the users from the API.
+    *   
+    */
 	$scope.fetchUsers = function(){
 		
-		$scope.obj = usersService.fetchUsers();
+        // Fetch the users
+	    $scope.obj = usersService.fetchUsers();
+
+	    // Since the users are fetched asynchronously, a watch is added. The watch function is executed when the obj.content changes.
+	    // This function retrieves the data from the object into an array.
+        // The data on the frontpage is then automatically updated by angular
+
 		$scope.$watch('obj.content', function(newValue, oldValue){
-			$scope.users = $scope.obj.content;
+		    tempUsersArray = new Array(0);
+		    var i = 0;
+		    for (key in $scope.obj.content) 
+		    {
+		        if (key.startsWith("User_"))
+		        {
+                    tempUsersArray.length++;
+		            var object = $scope.obj.content[key];
+		            tempUsersArray[i] = object;
+		            i++;
+		        }
+		        $scope.users = tempUsersArray;
+		    }
 		});
 	};
 	

@@ -1,6 +1,6 @@
 angular.module('MembersApp').factory('usersService', ['$http', function($http){
 		
-	var url = "http://test.bluetoes.net/toes-api/public/user";
+    var url = "http://test.bluetoes.net/api/user";
 	
 	var factory = {};
 	
@@ -17,7 +17,7 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 		$http.get(url).then(function succesCallback(response){
 			status = response.status;
 			statusText = response.statusText;
-			users.content = response.data._embedded.user;
+			users.content = response.data.Users;
 		}, function errorCallback(response){
 			status = response.status;
 			statusText = response.statusText;

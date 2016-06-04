@@ -15,13 +15,14 @@
 			<td style="width:50px"></td>
 			<td style="width:50px"></td>
 		</tr>
-		<tr ng-repeat="user in users | users:types.selectedType.type">
-			<td>{{user.id}}</td>
-			<td>{{user.email}}</td>
-			<td>{{user.type}}</td>
-			<td><a href="#viewMember/{{user.id}}">View</a></td>
-			<td><a href="#editMember/{{user.id}}">Edit</a></td>
-			<td><a href="#unregisterMember/{{user.id}}">Unregister</a></td>
-		</tr>
+        <tr ng-repeat="user in users | users:types.selectedType.type">
+        <!--<tr ng-repeat="user in users">-->
+            <td>{{user.Id}}</td>
+            <td>{{user.Email}}</td>
+            <td>{{user.Type}}</td>
+            <td><a href="#viewMember/{{user.Id}}">View</a></td>
+            <td><a href="#editMember/{{user.Id}}">Edit</a></td>
+            <td><a href="#unregisterMember/{{user.Id}}">Unregister</a></td>
+        </tr>
 	</table>
 </div>
