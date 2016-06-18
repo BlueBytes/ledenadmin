@@ -10,6 +10,7 @@
 			<td style="width:30px"><b>id</b></td>
 			<td style="width:200px"><b>e-mail</b></td>
 			<td style="width:100px"><b>type</b></td>
+            <td style="width:200px"><b>name</b></td>
 			<td style="width:50px"></td>
 			<td style="width:50px"></td>
 			<td style="width:50px"></td>
@@ -19,6 +20,7 @@
             <td>{{user.Id}}</td>
             <td>{{user.Email}}</td>
             <td>{{user.Type}}</td>
+            <td>{{user.UserDataPersonal.NamePrefix}} {{user.UserDataPersonal.NameFirst}} {{user.UserDataPersonal.Infix}} {{user.UserDataPersonal.NameLast}} {{user.UserDataPersonal.NameSuffix}}</td>
             <td><a href="#viewMember/{{user.Id}}">View</a></td>
             <td><a href="#editMember/{{user.Id}}">Edit</a></td>
             <td><a href="#unregisterMember/{{user.Id}}">Unregister</a></td>

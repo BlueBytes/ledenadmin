@@ -1,6 +1,6 @@
 angular.module('MembersApp').factory('usersService', ['$http', function($http){
 		
-    var url = "http://test.bluetoes.net/api/user";
+    var url = "http://test.bluetoes.net/api/";
 	
 	var factory = {};
 	
@@ -14,7 +14,7 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 		
 		var users = {content:null};
 	
-		$http.get(url).then(function succesCallback(response){
+		$http.get(url + 'user').then(function succesCallback(response){
 			status = response.status;
 			statusText = response.statusText;
 			users.content = response.data.Users;
@@ -32,7 +32,7 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 	factory.fetchUser = function(ID){
 		var user = {content:null};
 		
-		$http.get(url + '/' + ID).then(function succesCallback(response){
+		$http.get(url + 'user'+ '/' + ID).then(function succesCallback(response){
 			status = response.status;
 			statusText = response.statusText;
 			user.content = response.data;
@@ -43,6 +43,25 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 		
 		return user;
 	};
+
+    /**
+    *   Fetches the personal data of a single user
+    */
+	factory.fetchUserDatePersonal = function (ID) {
+	    var userPersonal = { content: null }
+
+	    $http.get(url + 'userdatapersonal/' + ID).then(function succesCallback(response) {
+	        status = response.status;
+	        statusText = response.statusText;
+	        userPersonal.content = response.data;
+	    },
+            function errorCallback(response) {
+                status = response.status;
+                statusText = response.statusText;
+            }
+        );
+	    return userPersonal;
+	};
 	
 	/**
 	 * Add a new user
@@ -50,7 +69,7 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 	factory.postUser = function(user){
 		//var newUser = {email : $scope.newEmail, type : $scope.selectedType.type};
 		
-		$http.post(url, user).then(function succesCallback(response){
+		$http.post(url + 'user', user).then(function succesCallback(response){
 			status = response.status;
 			statusText = response.statusText;
 		}, function errorCallback(response){
@@ -63,7 +82,7 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 	 * Update a user
 	 */
 	factory.editUser = function(user){
-		var updateURL = url + '/' + user.id;
+		var updateURL = url + 'user' + '/' + user.id;
 		//var updatedUser = {email : user.email, type : user.type};
 		
 		$http.put(updateURL, user).then(function succesCallback(response){
@@ -79,7 +98,7 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 	 * Delete a user
 	 */
 	factory.deleteUser = function(user){
-		var deleteURL = url + '/' + user.id;
+		var deleteURL = url + 'user' + '/' + user.id;
 		$http.delete(deleteURL, {id: user.id}).then(function succesCallback(response){
 			status = response.status;
 			statusText = response.statusText;

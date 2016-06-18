@@ -31,25 +31,26 @@ membersApp.controller('membersListCtrl', ['$scope','usersService', function($sco
 		    $scope.users = $scope.obj.content;
 		});
 	};
+
+    // This function retrieves the data from the object into an array.
+    // The data on the frontpage is then automatically updated by angular
+	$scope.convertToArray = function () {
+	    tempUsersArray = new Array(0);
+	    var i = 0;
+	    for (key in $scope.obj.content) {
+	        if (key.startsWith("User_")) {
+	            tempUsersArray.length++;
+	            var object = $scope.obj.content[key];
+	            tempUsersArray[i] = object;
+	            i++;
+	        }
+	        $scope.users = tempUsersArray;
+	    }
+	}
 	
 	$scope.fetchUsers();
 }]);
 
-// This function retrieves the data from the object into an array.
-// The data on the frontpage is then automatically updated by angular
-$scope.convertToArray = function () {
-    tempUsersArray = new Array(0);
-    var i = 0;
-    for (key in $scope.obj.content) {
-        if (key.startsWith("User_")) {
-            tempUsersArray.length++;
-            var object = $scope.obj.content[key];
-            tempUsersArray[i] = object;
-            i++;
-        }
-        $scope.users = tempUsersArray;
-    }
-}
 
 /**
  *member controller 
@@ -70,7 +71,7 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 	{
 		if($scope.state == 'new')
 		{
-				
+
 		}
 		else if($scope.state == 'edit')
 		{
@@ -207,10 +208,15 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 	if($scope.state == 'view' || $scope.state == 'edit')
 	{
 		$scope.userID = $routeParams.userID;
-		$scope.obj = usersService.fetchUser();
+		$scope.obj = usersService.fetchUser($scope.userID);
 		$scope.$watch('obj.content', function(newValue, oldValue){
 			$scope.user = $scope.obj.content;
 		});
+
+		$scope.objPersonal = usersService.fetchUserDatePersonal($scope.userID)
+		$scope.$watch('objPersonal.content', function (newValue, oldValue) {
+		    $scope.userDataPersonal = $scope.objPersonal.content;
+		})
 	}
 }]);
 
