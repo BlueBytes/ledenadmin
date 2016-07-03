@@ -71,7 +71,7 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 	{
 		if($scope.state == 'new')
 		{
-		    usersService.postUser(user, $scope.userDataPersonal);
+		    usersService.postUser(user, userDataPersonal);
 		}
 		else if($scope.state == 'edit')
 		{
