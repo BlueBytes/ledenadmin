@@ -66,17 +66,36 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 	/**
 	 * Add a new user
 	 */	
-	factory.postUser = function(user){
-		//var newUser = {email : $scope.newEmail, type : $scope.selectedType.type};
+	factory.postUser = function(user, userDataPersonal){
+	    //var newUser = {email : $scope.newEmail, type : $scope.selectedType.type};
+	    //user.Id = null;
+	    user.Type = 'member';
 		
 		$http.post(url + 'user', user).then(function succesCallback(response){
 			status = response.status;
 			statusText = response.statusText;
+			userDataPersonal.UserId = response.data
+            //postDataPersonal(userDataPersonal.UserId)
 		}, function errorCallback(response){
 			status = response.status;
 			statusText = response.statusText;
 		});
 	};
+
+    /**
+    *   This function will post the personal data to the database
+    */
+	postDataPersonal = function (userDataPersonal) {
+	    var UpdateURL = url + 'userdatapersonal/' + userDataPersonal.UserId;
+
+	    $http.put(updateURL, userDataPersonal).then(function succesCallback(response) {
+	        status = response.status;
+	        statusText = response.statusText;
+	    }, function errorCallback(response) {
+	        status = response.status;
+	        statusText = response.statusText;
+	    });
+	}
 	
 	/**
 	 * Update a user
@@ -108,6 +127,6 @@ angular.module('MembersApp').factory('usersService', ['$http', function($http){
 		});
 	};
 	
-	return factory;;	
+	return factory;	
 }]);
 

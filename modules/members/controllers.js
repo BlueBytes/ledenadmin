@@ -58,7 +58,7 @@ membersApp.controller('membersListCtrl', ['$scope','usersService', function($sco
 membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersService', function($scope, $location, $routeParams, usersService){
 	$scope.obj = null;
 	$scope.state;
-	$scope.user = null;
+	$scope.user;
 	
 	
 	
@@ -67,11 +67,11 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 		$location.path('/members');
 	};
 	
-	$scope.confirm = function()
+	$scope.confirm = function(user, userDataPersonal)
 	{
 		if($scope.state == 'new')
 		{
-
+		    usersService.postUser(user, $scope.userDataPersonal);
 		}
 		else if($scope.state == 'edit')
 		{
@@ -98,7 +98,7 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 	// set which fields need to be shown and which field can be edited
 	if($scope.state == 'view')
 	{
-		$scope.showElements = {
+	    $scope.showElements = {
 			id: {view: true},
 			surname: {view: true, edit: false},
 			initials: {view: true, edit: false},
@@ -209,7 +209,8 @@ membersApp.controller('memberCtrl', ['$scope','$location','$routeParams','usersS
 	{
 		$scope.userID = $routeParams.userID;
 		$scope.obj = usersService.fetchUser($scope.userID);
-		$scope.$watch('obj.content', function(newValue, oldValue){
+		$scope.user = $scope.obj.content;
+		$scope.$watch('obj.content', function (newValue, oldValue) {
 			$scope.user = $scope.obj.content;
 		});
 
